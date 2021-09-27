@@ -1,0 +1,341 @@
+﻿@model desafio_OCTO.Models.PessoaFisica
+
+@{
+    ViewData["Title"] = "Create PF";
+}
+
+<style>
+    .segundoContato, .terceiroContato, .segundoEndereco, .terceiroEndereco {
+        display: none;
+    }
+    .display {
+        display: block;
+    }   
+
+</style>
+
+<h1 class="text-center">Criar Pessoa Física</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreatePf">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="tipo" asp-for="Nome"></label>
+                <input class="form-control" id="tipo" asp-for="Nome" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="tipo" asp-for="Profissao"></label>
+                <input class="form-control" id="tipo" asp-for="Profissao" />
+                <span asp-validation-for="Profissao" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="tipo" asp-for="EstadoCivil"></label>
+                <input class="form-control" id="tipo" asp-for="EstadoCivil" />
+                <span asp-validation-for="EstadoCivil" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="date" asp-for="DataNascimento"></label>
+                <input class="form-control" id="date" asp-for="DataNascimento" />
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="txtCPF" asp-for="CPF"></label>
+                <input class="form-control" id="txtCPF" asp-for="CPF" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="tipo" asp-for="RG"></label>
+                <input class="form-control" id="tipo" asp-for="RG" />
+                <span asp-validation-for="RG" class="text-danger"></span>
+            </div>
+
+            <div class="primeiroContato">
+                <h3>Contato</h3>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Contatos[0].TipoContato"></label>
+                    <select class="form-control" id="tipo" asp-for="Contatos[0].TipoContato">
+                        <option selected>Selecione o tipo de contato</option>
+                        <option value="Celular">Celular</option>
+                        <option value="Residencial">Residencial</option>
+                        <option value="Comercial">Comercial</option>
+                    </select>
+                    <span asp-validation-for="Contatos[0].TipoContato" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="phone_with_ddd" asp-for="Contatos[0].Numero"></label>
+                    <input class="form-control phone_with_ddd" id="phone_with_ddd" asp-for="Contatos[0].Numero" />
+                    <span asp-validation-for="Contatos[0].Numero" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="segundoContato">
+                <h3>Contato 2</h3>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Contatos[1].TipoContato"></label>
+                    <select class="form-control" id="tipo" asp-for="Contatos[1].TipoContato">
+                        <option selected>Selecione o tipo de contato</option>
+                        <option value="Celular">Celular</option>
+                        <option value="Residencial">Residencial</option>
+                        <option value="Comercial">Comercial</option>
+                    </select>
+                    <span asp-validation-for="Contatos[1].TipoContato" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="phone_with_ddd" asp-for="Contatos[1].Numero"></label>
+                    <input class="form-control phone_with_ddd" id="phone_with_ddd" asp-for="Contatos[1].Numero" />
+                    <span asp-validation-for="Contatos[1].Numero" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="terceiroContato">
+                <h3>Contato 3</h3>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Contatos[2].TipoContato"></label>
+                    <select class="form-control" id="tipo" asp-for="Contatos[2].TipoContato">
+                        <option selected>Selecione o tipo de contato</option>
+                        <option value="Celular">Celular</option>
+                        <option value="Residencial">Residencial</option>
+                        <option value="Comercial">Comercial</option>
+                    </select>
+                    <span asp-validation-for="Contatos[2].TipoContato" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="phone_with_ddd" asp-for="Contatos[2].Numero"></label>
+                    <input class="form-control phone_with_ddd" id="phone_with_ddd" asp-for="Contatos[2].Numero" />
+                    <span asp-validation-for="Contatos[2].Numero" class="text-danger"></span>
+                </div>
+            </div>
+            <div id="button_addCtt">
+                <button class="btn btn-primary addButton"> Adicionar contato </button>
+            </div>
+
+            <div class="primeiroEndereco">
+                <h3>Endereço</h3>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[0].TipoEndereco"></label>
+                    <select class="form-control" id="tipo" asp-for="Enderecos[0].TipoEndereco">
+                        <option selected>Selectione o tipo de endereço</option>
+                        <option value="Comercial">Comercial</option>
+                        <option value="Cobrança">Cobrança</option>
+                        <option value="Entrega">Entrega</option>
+                    </select>
+                    <span asp-validation-for="Enderecos[0].TipoEndereco" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[0].Estado"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[0].Estado" />
+                    <span asp-validation-for="Enderecos[0].Estado" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[0].Cidade"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[0].Cidade" />
+                    <span asp-validation-for="Enderecos[0].Cidade" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[0].Bairro"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[0].Bairro" />
+                    <span asp-validation-for="Enderecos[0].Bairro" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[0].Rua"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[0].Rua" />
+                    <span asp-validation-for="Enderecos[0].Rua" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[0].Numero"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[0].Numero" />
+                    <span asp-validation-for="Enderecos[0].Numero" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="cep" asp-for="Enderecos[0].CEP"></label>
+                    <input class="form-control cep" id="cep" asp-for="Enderecos[0].CEP" />
+                    <span asp-validation-for="Enderecos[0].CEP" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="segundoEndereco">
+                <h3>Endereço 2</h3>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[1].TipoEndereco"></label>
+                    <select class="form-control" id="tipo" asp-for="Enderecos[1].TipoEndereco">
+                        <option selected>Selectione o tipo de endereço</option>
+                        <option value="Comercial">Comercial</option>
+                        <option value="Cobrança">Cobrança</option>
+                        <option value="Entrega">Entrega</option>
+                    </select>
+                    <span asp-validation-for="Enderecos[1].TipoEndereco" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[1].Estado"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[1].Estado" />
+                    <span asp-validation-for="Enderecos[1].Estado" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[1].Cidade"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[1].Cidade" />
+                    <span asp-validation-for="Enderecos[1].Cidade" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[1].Bairro"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[1].Bairro" />
+                    <span asp-validation-for="Enderecos[1].Bairro" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[1].Rua"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[1].Rua" />
+                    <span asp-validation-for="Enderecos[1].Rua" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[1].Numero"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[1].Numero" />
+                    <span asp-validation-for="Enderecos[1].Numero" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="cep" asp-for="Enderecos[1].CEP"></label>
+                    <input class="form-control cep" id="cep" asp-for="Enderecos[1].CEP" />
+                    <span asp-validation-for="Enderecos[1].CEP" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="terceiroEndereco">
+                <h3>Endereço 3</h3>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[2].TipoEndereco"></label>
+                    <select class="form-control" id="tipo" asp-for="Enderecos[2].TipoEndereco">
+                        <option selected>Selectione o tipo de endereço</option>
+                        <option value="Comercial">Comercial</option>
+                        <option value="Cobrança">Cobrança</option>
+                        <option value="Entrega">Entrega</option>
+                    </select>
+                    <span asp-validation-for="Enderecos[2].TipoEndereco" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[2].Estado"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[2].Estado" />
+                    <span asp-validation-for="Enderecos[2].Estado" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[2].Cidade"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[2].Cidade" />
+                    <span asp-validation-for="Enderecos[2].Cidade" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[1].Bairro"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[1].Bairro" />
+                    <span asp-validation-for="Enderecos[1].Bairro" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[2].Rua"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[2].Rua" />
+                    <span asp-validation-for="Enderecos[2].Rua" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[2].Numero"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[2].Numero" />
+                    <span asp-validation-for="Enderecos[2].Numero" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="cep" asp-for="Enderecos[2].CEP"></label>
+                    <input class="form-control cep" id="cep" asp-for="Enderecos[2].CEP" />
+                    <span asp-validation-for="Enderecos[2].CEP" class="text-danger"></span>
+                </div>
+            </div>
+            <div id="button_class">
+                <button class="btn btn-primary addSegundoEndereco"> Adicionar endereço </button>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}   
+
+<script>
+    $('.cep').mask('00000-000');
+    $('.phone_with_ddd').mask('(00) 00000-0000');
+    $('#txtCPF').mask('000.000.000-00', { placeholder: "___.___.___-__" });
+
+    var segundoContato = document.querySelector(".segundoContato");
+    var terceiroContato = document.querySelector(".terceiroContato");
+    var segundoEndereco = document.querySelector(".segundoEndereco");
+    var terceiroEndereco = document.querySelector(".terceiroEndereco");
+
+    var button = document.querySelector(".addButton").addEventListener('click', () => {
+        event.preventDefault()
+        if (!segundoContato.classList.contains("display")) {
+            segundoContato.classList.add("display")
+        } else {
+            terceiroContato.classList.add("display")
+            var button_addCtt = document.getElementById("button_addCtt").style.display = "none";
+        }        
+    })
+
+    var addSegundoEndereco = document.querySelector(".addSegundoEndereco").addEventListener('click', () => {
+        event.preventDefault()
+        if (!segundoEndereco.classList.contains('display')) {
+            segundoEndereco.classList.add("display")
+        }
+        else {
+            terceiroEndereco.classList.add("display")
+            var button_addEnd = document.getElementById("button_class").style.display = "none";
+        }      
+    })  
+    
+</script>
+
+}

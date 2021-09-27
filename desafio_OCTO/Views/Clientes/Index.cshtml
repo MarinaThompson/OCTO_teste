@@ -1,0 +1,123 @@
+﻿@*@model IEnumerable<desafio_OCTO.Models.PessoaJuridica>*@
+@model desafio_OCTO.Models.ClientesViewModel
+
+@{
+    ViewData["Title"] = "Lista de clientes";
+}
+
+<a asp-action="CreatePf" class="btn btn-outline-primary">Cadastrar novo cliente físico</a>
+<a asp-action="CreatePj" class="btn btn-outline-primary">Cadastrar novo cliente jurídico</a>
+
+
+<h1>Lista de clientes</h1>
+@if (Model.PessoasJuridicas.Count > 0)
+{
+<table class="table">
+    @foreach (var item in Model.PessoasJuridicas)
+    {
+        <tr>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.NomeFantasia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.RazaoSocial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.DataAbertura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.CNPJ)
+            </th>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeFantasia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RazaoSocial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataAbertura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CNPJ)
+            </td>
+
+            <td>
+                <a class="option" asp-action="EditPj" asp-route-id="@item.ID">Editar</a> |
+                <a class="option" asp-action="DetailsPj" asp-route-id="@item.ID">Detalhes</a> |
+                <a class="option" asp-action="DeletePj" asp-route-id="@item.ID">Apagar</a>
+            </td>
+        </tr>
+
+    }
+</table>
+}
+else
+{
+    <h2 class="text-center">Não há pessoas jurídicas cadastradas como clientes</h2>
+}
+
+<hr />
+
+@if (Model.PessoasFisicas.Count > 0)
+{
+
+<table class="table">
+    @foreach (var item in Model.PessoasFisicas)
+    {
+        <tr>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.Profissao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.EstadoCivil)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.RG) | @Html.DisplayNameFor(modelItem => item.CPF)
+
+            </th>
+        </tr>
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profissao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoCivil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RG) / @Html.DisplayFor(modelItem => item.CPF)
+            </td>
+
+            <td>
+                <a class="option" asp-action="EditPf" asp-route-id="@item.ID">Editar</a> |
+                <a class="option" asp-action="DetailsPf" asp-route-id="@item.ID">Detalhes</a> |
+                <a class="option" asp-action="DeletePf" asp-route-id="@item.ID">Apagar</a>
+            </td>
+        </tr>
+
+
+    }
+</table>
+}
+
+else
+{
+    <h2 class="text-center">Não há pessoas físicas cadastradas como clientes</h2>
+}

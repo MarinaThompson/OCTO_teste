@@ -1,0 +1,131 @@
+﻿@model desafio_OCTO.Models.PessoaFisica
+
+@{
+    ViewData["Title"] = "Edit PJ";
+}
+
+<h1 class="text-center">Editar @Model.Nome</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditPj">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="tipo" asp-for="Nome"></label>
+                <input class="form-control" id="tipo" asp-for="Nome" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="tipo" asp-for="Profissao"></label>
+                <input class="form-control" id="tipo" asp-for="Profissao" />
+                <span asp-validation-for="Profissao" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="tipo" asp-for="DataNascimento"></label>
+                <input class="form-control" id="tipo" asp-for="DataNascimento" />
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="tipo" asp-for="EstadoCivil"></label>
+                <input class="form-control" id="tipo" asp-for="EstadoCivil" />
+                <span asp-validation-for="EstadoCivil" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="tipo" asp-for="RG"></label>
+                <input class="form-control" id="tipo" asp-for="RG" />
+                <span asp-validation-for="RG" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="visually-hidden control-label" for="tipo" asp-for="CPF"></label>
+                <input class="form-control" id="tipo" asp-for="CPF" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+
+
+            @for (var i = 0; i < Model.Contatos.Count; i++)
+            {
+                <h3>Contatos</h3>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Contatos[i].TipoContato"></label>
+                    <input class="form-control" id="tipo" asp-for="Contatos[i].TipoContato" />
+                    <span asp-validation-for="Contatos[i].TipoContato" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Contatos[i].Numero"></label>
+                    <input class="form-control" id="tipo" asp-for="Contatos[i].Numero" />
+                    <span asp-validation-for="Contatos[i].Numero" class="text-danger"></span>
+                </div>
+            }
+
+            @for (var i = 0; i < Model.Enderecos.Count; i++)
+            {
+                <h3>Endereços</h3>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[i].TipoEndereco"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[i].TipoEndereco" />
+                    <span asp-validation-for="Enderecos[i].TipoEndereco" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[i].Estado"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[i].Estado" />
+                    <span asp-validation-for="Enderecos[i].Estado" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[i].Cidade"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[i].Cidade" />
+                    <span asp-validation-for="Enderecos[i].Cidade" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[i].Bairro"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[i].Bairro" />
+                    <span asp-validation-for="Enderecos[i].Bairro" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[i].Rua"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[i].Rua" />
+                    <span asp-validation-for="Enderecos[i].Rua" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[i].Numero"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[i].Numero" />
+                    <span asp-validation-for="Enderecos[i].Numero" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="visually-hidden control-label" for="tipo" asp-for="Enderecos[i].CEP"></label>
+                    <input class="form-control" id="tipo" asp-for="Enderecos[i].CEP" />
+                    <span asp-validation-for="Enderecos[i].CEP" class="text-danger"></span>
+                </div>
+            }
+
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

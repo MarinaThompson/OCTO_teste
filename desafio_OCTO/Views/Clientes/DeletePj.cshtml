@@ -1,0 +1,110 @@
+﻿@model desafio_OCTO.Models.PessoaJuridica
+
+@{ 
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="quadro_principal_lista">
+            <h1 class="text-center">Tem certeza que você deseja excluir este cliente?</h1>
+            <p class="text-danger">@ViewData["ErrorMessage"]</p>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.NomeFantasia)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.NomeFantasia)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RazaoSocial)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RazaoSocial)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DataAbertura)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DataAbertura)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CNPJ)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CNPJ)
+                </dd>
+                <dt class="col-sm-12">
+                    Endereços:
+                </dt>
+                @foreach (Endereco e in Model.Enderecos)
+                {
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(endereco => e.TipoEndereco)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(endereco => e.TipoEndereco)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(endereco => e.Estado)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(endereco => e.Estado)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(endereco => e.Cidade)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(endereco => e.Cidade)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(endereco => e.Bairro)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(endereco => e.Bairro)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(endereco => e.Rua)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(endereco => e.Rua), @Html.DisplayFor(endereco => e.Numero)
+
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(endereco => e.CEP)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(endereco => e.CEP)
+                    </dd>
+                }
+                <dt class="col-sm-12">
+                    Contatos:
+                </dt>
+                @foreach (Contato c in Model.Contatos)
+                {
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(contato => c.TipoContato)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(contato => c.TipoContato)
+                    </dd>
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(contato => c.Numero)
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(contato => c.Numero)
+                    </dd>
+                }
+            </dl>
+        
+
+            <form asp-action="DeletePj">
+                <input type="hidden" asp-for="ID" />
+                <input type="submit" value="Excluir" class="btn btn-danger" /> |
+                <a asp-action="Index">Voltar para a lista</a>
+            </form>
+        </div>
+    </div>
+</div>
