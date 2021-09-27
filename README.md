@@ -1,14 +1,14 @@
 # OCTO_teste
 
 ## Script de criação da tabela ClientePessoaFisica:
-CREATE TABLE ClientePessoaFisica (
-	ID int IDENTITY(1,1) PRIMARY KEY,
-	[Nome] [varchar](55) NOT NULL,
-	[Profissao] [varchar](100) NOT NULL,
-	[EstadoCivil] [varchar](100) NOT NULL,
-	[RG] [varchar](10) NOT NULL,
-	[CPF] [varchar](11) NOT NULL,
-	[DataNascimento] [date] NOT NULL)
+CREATE TABLE ClientePessoaFisica ( /n
+	ID int IDENTITY(1,1) PRIMARY KEY, /n
+	[Nome] [varchar](55) NOT NULL, /n
+	[Profissao] [varchar](100) NOT NULL, /n
+	[EstadoCivil] [varchar](100) NOT NULL, /n
+	[RG] [varchar](10) NOT NULL, /n
+	[CPF] [varchar](11) NOT NULL, /n
+	[DataNascimento] [date] NOT NULL) /n
   
   ## Script de criação da tabela ClientePessoaJurídica:
   CREATE TABLE ClientePessoaJuridica (
